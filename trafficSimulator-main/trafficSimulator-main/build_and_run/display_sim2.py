@@ -1,4 +1,4 @@
-from base_intersection import *
+from roundabout import *
 
 #defining the intersection
 intersection = Intersection()
@@ -10,4 +10,3 @@ win = Window(sim)
 #starts running the simulation then displays it
 win.run()
 win.show()
-

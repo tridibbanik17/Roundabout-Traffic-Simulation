@@ -76,32 +76,52 @@ class Intersection:
 
 
             'vehicles': [
-                # 'path': [entry_0, turn_into_corners_0, corners_0, turn_to_exit_0, exit_0]
+                # 'path': [entry, turn_into_corners, corners, turn_to_exit, exit]
                 (1, {'path': [0, 32, 16, 40, 10],'v_max':self.v,'colour':(225, 0, 0, 80)}),
                 (1, {'path': [0, 32, 16, 24, 18, 42, 12],'v_max':self.v,'colour':(225, 0, 0, 80)}),
                 (1, {'path': [0, 32, 16, 24, 18, 26, 20, 44, 14],'v_max':self.v,'colour':(225, 0, 0, 80)}),
                 (1, {'path': [0, 32, 16, 24, 18, 26, 20, 28, 22, 46, 8],'v_max':self.v,'colour':(225, 0, 0, 80)}),
 
-                # (1,{'path': [1, 17, 9, 21, 6],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                # (1, {'path': [1,17,9,13,10,22,7],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                # (1, {'path': [1, 17, 9,13,10,14,11,23,4],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                # (1, {'path': [1, 17, 9,13,10,14,11,15,8,20,5],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [1, 33, 17, 41, 11],'v_max':self.v,'colour':(225, 0, 0, 80)}),
+                (1, {'path': [1, 33, 17, 25, 19, 43, 13],'v_max':self.v,'colour':(225, 0, 0, 80)}),
+                (1, {'path': [1, 33, 17, 25, 19, 27, 21, 45, 15],'v_max':self.v,'colour':(225, 0, 0, 80)}),
+                (1, {'path': [1, 33, 17, 25, 19, 27, 21, 29, 23, 47, 9],'v_max':self.v,'colour':(225, 0, 0, 80)}),
 
-                # (1, {'path': [2, 18, 10, 22, 7],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                # (1, {'path': [2,18,10,14,11,23,4],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                # (1, {'path': [2,18,10,14,11,15,8,20,5],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                # (1, {'path': [2, 18, 10,14,11,15,8,12,9,21,6],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1,{'path': [2, 34, 18, 42, 12],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [2, 34, 18, 26, 20, 44, 14],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [2, 34, 18, 26, 20, 28, 22, 46, 8],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [2, 34, 18, 26, 20, 28, 22, 30, 16, 40, 10],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+
+                (1,{'path': [3, 35, 19, 43, 13],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [3, 35, 19, 27, 21, 45, 15],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [3, 35, 19, 27, 21, 29, 23, 47, 9],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [3, 35, 19, 27, 21, 29, 23, 31, 17, 41, 11],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+
+                (1, {'path': [4, 36, 20, 44, 14],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [4, 36, 20, 28, 22, 46, 8],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [4, 36, 20, 28, 22, 30, 16, 40, 10],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [4, 36, 20, 28, 22, 30, 16, 24, 18, 42, 12],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+
+                (1, {'path': [5, 37, 21, 45, 15],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [5, 37, 21, 29, 23, 47, 9],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [5, 37, 21, 29, 23, 31, 17, 41, 11],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [5, 37, 21, 29, 23, 31, 17, 25, 19, 43, 13],'v_max':self.v, 'colour': (225, 0, 0, 80)}),                
                 
-                # (1, {'path': [3, 19, 11, 23, 4],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                # (1, {'path': [3,19,11,15,8,20,5],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                # (1, {'path': [3,19,11,15,8,12,9,21,6],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                # (1, {'path': [3, 19, 11,15,8,12,9,13,10,22,7],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [6, 38, 22, 46, 8],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [6, 38, 22, 30, 16, 40, 10],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [6, 38, 22, 30, 16, 24, 18, 42, 12],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [6, 38, 22, 30, 16, 24, 18, 26, 20, 44, 14],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+
+                (1, {'path': [7, 39, 23, 47, 9],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [7, 39, 23, 31, 17, 41, 11],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [7, 39, 23, 31, 17, 25, 19, 43, 13],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [7, 39, 23, 31, 17, 25, 19, 27, 21, 45, 15],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
             ], 'vehicle_rate': 30
         }
         
         )
         # self.sim.define_interfearing_paths([entry_0,turn_into_corners_0],[connectors_7,corners_0],turn=True)
-        # self.sim.define_interfearing_paths([entry_1,turn_into_corners_1],[connectors_0,corners_1],turn=True)
+        # self.sim.define_interfearing_paths([entry_2,turn_into_corners_2],[connectors_0,corners_2],turn=True)
         self.sim.define_interfearing_paths([0,32],[30,16],turn=True)
         self.sim.define_interfearing_paths([2,34],[24,18],turn=True)
         self.sim.define_interfearing_paths([4,36],[26,20],turn=True)

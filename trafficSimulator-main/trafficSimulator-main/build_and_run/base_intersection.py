@@ -16,7 +16,7 @@ class Intersection:
         self.vehicle_rate = 10
         self.v = 17
         self.speed_variance = 0
-        self.self_driving_vehicle_proportion = 0 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
+        self.self_driving_vehicle_proportion = 1 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
         if self.self_driving_vehicle_proportion == 1:
             self.v = self.v * 1.5
 #----------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -94,31 +94,32 @@ class Intersection:
             #The first variable: 1 defines the weight if the vehicle; the higher the weight the more likely that type of vehicle will generate
             # 'path' defines the order of segments the vehicle will drive over
             #'v_max' defines the fastest speed a vehicle can drive at
+            #All regular non-self driving vehicles will have green color
 
             'vehicles': [
                 #South [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [0, 16, 12], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [1, 17, 13], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [1, 24, 11], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [0, 28, 14], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
+                (1, {'path': [0, 16, 12], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [1, 17, 13], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [1, 24, 11], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [0, 28, 14], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
 
                 #East [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [2, 18, 14], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [3, 19, 15], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [3, 25, 13], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [2, 29, 8], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
+                (1, {'path': [2, 18, 14], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [3, 19, 15], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [3, 25, 13], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [2, 29, 8], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
 
                 #North [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [4, 20, 8], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [5, 21, 9], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [5, 26, 15], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [4, 30, 10], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
+                (1, {'path': [4, 20, 8], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [5, 21, 9], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [5, 26, 15], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [4, 30, 10], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
            
                 #West [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [6, 22, 10], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [7, 23, 11], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [7, 27, 9], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [6, 31, 12], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
+                (1, {'path': [6, 22, 10], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [7, 23, 11], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [7, 27, 9], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [6, 31, 12], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
                 ], 'vehicle_rate' : self.vehicle_rate*(1-self.self_driving_vehicle_proportion) 
             })
         
@@ -129,32 +130,33 @@ class Intersection:
             #The first variable: 1 defines the weight if the vehicle; the higher the weight the more likely that type of vehicle will generate
             # 'path' defines the order of segments the vehicle will drive over
             #'v_max' defines the fastest speed a vehicle can drive at
-            #'T' defines the raction time of the vehicle, the base is 1
-            #'s0' defines the shortest distance a vehicle is able to drive behind another vehicle
+            #'T' defines the reaction time of the vehicle, the base is 1
+            #'s0' defines the shortest distance a vehicle is able to drive behind another vehicle 
+            #All self-driving vehicles will have red color
             'vehicles': [
                 #South [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [0, 16, 12], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
-                (1, {'path': [1, 17, 13], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
-                (1, {'path': [1, 24, 11], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
-                (1, {'path': [0, 28, 14], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
+                (1, {'path': [0, 16, 12], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [1, 17, 13], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [1, 24, 11], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [0, 28, 14], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
 
                 #East [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [2, 18, 14], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
-                (1, {'path': [3, 19, 15], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
-                (1, {'path': [3, 25, 13], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
-                (1, {'path': [2, 29, 8], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
+                (1, {'path': [2, 18, 14], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [3, 19, 15], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [3, 25, 13], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [2, 29, 8], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
 
                 #North [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [4, 20, 8], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
-                (1, {'path': [5, 21, 9], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
-                (1, {'path': [5, 26, 15], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
-                (1, {'path': [4, 30, 10], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
+                (1, {'path': [4, 20, 8], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [5, 21, 9], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [5, 26, 15], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [4, 30, 10], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
            
                 #West [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [6, 22, 10], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
-                (1, {'path': [7, 23, 11], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
-                (1, {'path': [7, 27, 9], 'v_max': self.v, 'T' : 0.1,'s0' : 4}),
-                (1, {'path': [6, 31, 12], 'v_max': self.v ,'T' : 0.1,'s0' : 4}),
+                (1, {'path': [6, 22, 10], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [7, 23, 11], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [7, 27, 9], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [6, 31, 12], 'v_max': self.v ,'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
                 ], 'vehicle_rate' : self.vehicle_rate*self.self_driving_vehicle_proportion 
             })
         

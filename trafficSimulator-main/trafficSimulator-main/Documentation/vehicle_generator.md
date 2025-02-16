@@ -2,7 +2,7 @@
 
 `config:` A dictionary containing all the configurable properties of a VehicleGenerator object, you can reassign these properties by defining them in config when initializing the VehicleGenerator object.
 
-`vehicle_rate:` the aveerage time at which the vehicles spawn is defined by this equation: $50/(vehicle\_rate)$ seconds.
+`vehicle_rate:` the average time at which the vehicles spawn is defined by this equation: $50/(vehicle\_rate)$ seconds.
 
 `vehicles:` A list containing tuples, the second value in the tuple is a config for a vehicle, and the first value is the weight of how often the vehicle defined by the config spawns.
 

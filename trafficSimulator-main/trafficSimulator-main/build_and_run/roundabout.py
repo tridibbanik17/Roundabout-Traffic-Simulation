@@ -11,7 +11,12 @@ class Intersection:
         length = 50 #I have shortened the length of the entrance roads because vehicles base speeds are much lower because they are driving in a round about, however they would be able to drive faster in the entrance.
         radius = 18
 
+        self.vehicle_rate = 10
+        self.speed_variance = 2.5
         self.v = 12.75
+        self.self_driving_vehicle_proportion = 0.5 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
+        if self.self_driving_vehicle_proportion == 1:
+            self.v = self.v * 1.5 # Self-driving vehicles can have 1.5 times speed than a non self-driving vehicle due to their better reaction time and overall control
 
         #entrance 0-7
         self.sim.create_segment((lane_space/2 + island_width/2, length + intersection_size/2), (lane_space/2 + island_width/2, intersection_size/2)) #0
@@ -77,46 +82,46 @@ class Intersection:
 
             'vehicles': [
                 # 'path': [entry, turn_into_corners, corners, turn_to_exit, exit]
-                (1, {'path': [0, 32, 16, 40, 10],'v_max':self.v,'colour':(225, 0, 0, 80)}),
-                (1, {'path': [0, 32, 16, 24, 18, 42, 12],'v_max':self.v,'colour':(225, 0, 0, 80)}),
-                (1, {'path': [0, 32, 16, 24, 18, 26, 20, 44, 14],'v_max':self.v,'colour':(225, 0, 0, 80)}),
-                (1, {'path': [0, 32, 16, 24, 18, 26, 20, 28, 22, 46, 8],'v_max':self.v,'colour':(225, 0, 0, 80)}),
+                (1, {'path': [0, 32, 16, 40, 10],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance,'colour':(225, 0, 0, 80)}),
+                (1, {'path': [0, 32, 16, 24, 18, 42, 12],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance,'colour':(225, 0, 0, 80)}),
+                (1, {'path': [0, 32, 16, 24, 18, 26, 20, 44, 14],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance,'colour':(225, 0, 0, 80)}),
+                (1, {'path': [0, 32, 16, 24, 18, 26, 20, 28, 22, 46, 8],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance,'colour':(225, 0, 0, 80)}),
 
-                (1, {'path': [1, 33, 17, 41, 11],'v_max':self.v,'colour':(225, 0, 0, 80)}),
-                (1, {'path': [1, 33, 17, 25, 19, 43, 13],'v_max':self.v,'colour':(225, 0, 0, 80)}),
-                (1, {'path': [1, 33, 17, 25, 19, 27, 21, 45, 15],'v_max':self.v,'colour':(225, 0, 0, 80)}),
-                (1, {'path': [1, 33, 17, 25, 19, 27, 21, 29, 23, 47, 9],'v_max':self.v,'colour':(225, 0, 0, 80)}),
+                (1, {'path': [1, 33, 17, 41, 11],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance,'colour':(225, 0, 0, 80)}),
+                (1, {'path': [1, 33, 17, 25, 19, 43, 13],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance,'colour':(225, 0, 0, 80)}),
+                (1, {'path': [1, 33, 17, 25, 19, 27, 21, 45, 15],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance,'colour':(225, 0, 0, 80)}),
+                (1, {'path': [1, 33, 17, 25, 19, 27, 21, 29, 23, 47, 9],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance,'colour':(225, 0, 0, 80)}),
 
-                (1,{'path': [2, 34, 18, 42, 12],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [2, 34, 18, 26, 20, 44, 14],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [2, 34, 18, 26, 20, 28, 22, 46, 8],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [2, 34, 18, 26, 20, 28, 22, 30, 16, 40, 10],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1,{'path': [2, 34, 18, 42, 12],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [2, 34, 18, 26, 20, 44, 14],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [2, 34, 18, 26, 20, 28, 22, 46, 8],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [2, 34, 18, 26, 20, 28, 22, 30, 16, 40, 10],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
 
-                (1,{'path': [3, 35, 19, 43, 13],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [3, 35, 19, 27, 21, 45, 15],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [3, 35, 19, 27, 21, 29, 23, 47, 9],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [3, 35, 19, 27, 21, 29, 23, 31, 17, 41, 11],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1,{'path': [3, 35, 19, 43, 13],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [3, 35, 19, 27, 21, 45, 15],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [3, 35, 19, 27, 21, 29, 23, 47, 9],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [3, 35, 19, 27, 21, 29, 23, 31, 17, 41, 11],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
 
-                (1, {'path': [4, 36, 20, 44, 14],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [4, 36, 20, 28, 22, 46, 8],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [4, 36, 20, 28, 22, 30, 16, 40, 10],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [4, 36, 20, 28, 22, 30, 16, 24, 18, 42, 12],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [4, 36, 20, 44, 14],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [4, 36, 20, 28, 22, 46, 8],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [4, 36, 20, 28, 22, 30, 16, 40, 10],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [4, 36, 20, 28, 22, 30, 16, 24, 18, 42, 12],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
 
-                (1, {'path': [5, 37, 21, 45, 15],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [5, 37, 21, 29, 23, 47, 9],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [5, 37, 21, 29, 23, 31, 17, 41, 11],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [5, 37, 21, 29, 23, 31, 17, 25, 19, 43, 13],'v_max':self.v, 'colour': (225, 0, 0, 80)}),                
+                (1, {'path': [5, 37, 21, 45, 15],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [5, 37, 21, 29, 23, 47, 9],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [5, 37, 21, 29, 23, 31, 17, 41, 11],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [5, 37, 21, 29, 23, 31, 17, 25, 19, 43, 13],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),                
                 
-                (1, {'path': [6, 38, 22, 46, 8],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [6, 38, 22, 30, 16, 40, 10],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [6, 38, 22, 30, 16, 24, 18, 42, 12],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [6, 38, 22, 30, 16, 24, 18, 26, 20, 44, 14],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [6, 38, 22, 46, 8],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [6, 38, 22, 30, 16, 40, 10],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [6, 38, 22, 30, 16, 24, 18, 42, 12],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [6, 38, 22, 30, 16, 24, 18, 26, 20, 44, 14],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
 
-                (1, {'path': [7, 39, 23, 47, 9],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [7, 39, 23, 31, 17, 41, 11],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [7, 39, 23, 31, 17, 25, 19, 43, 13],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-                (1, {'path': [7, 39, 23, 31, 17, 25, 19, 27, 21, 45, 15],'v_max':self.v, 'colour': (225, 0, 0, 80)}),
-            ], 'vehicle_rate': 30
+                (1, {'path': [7, 39, 23, 47, 9],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [7, 39, 23, 31, 17, 41, 11],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [7, 39, 23, 31, 17, 25, 19, 43, 13],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+                (1, {'path': [7, 39, 23, 31, 17, 25, 19, 27, 21, 45, 15],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (225, 0, 0, 80)}),
+            ], 'vehicle_rate': self.vehicle_rate*(1-self.self_driving_vehicle_proportion)
         }
         
         )

@@ -11,9 +11,9 @@ class Intersection:
         length = 50 #I have shortened the length of the entrance roads because vehicles base speeds are much lower because they are driving in a round about, however they would be able to drive faster in the entrance.
         radius = 36
 
-        self.vehicle_rate = 2
+        self.vehicle_rate = 2 # Vehicle rate is 5 times lower because the road is only for Emergency vehicle's use
         self.speed_variance = 2.5
-        self.v = 25.50
+        self.v = 25.50 # Increasing the vehicle speed 1.5 times the default speed (17 m/s)
         self.self_driving_vehicle_proportion = 0.5 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
         if self.self_driving_vehicle_proportion == 1:
             self.v = self.v * 1.5 # Self-driving vehicles can have 1.5 times speed than a non self-driving vehicle due to their better reaction time and overall control

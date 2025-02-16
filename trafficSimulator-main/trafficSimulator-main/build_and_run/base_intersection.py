@@ -13,10 +13,12 @@ class Intersection:
 
 
 #---------------------------------------------------------------Variables----------------------------------------------------------------------------#
-        self.vehicle_rate = 10
+        self.vehicle_rate = 30 # Increasing the vehicle rate 3 times before
         self.v = 17
-        self.speed_variance = 0
-        self.self_driving_vehicle_proportion = 1 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
+        self.sdv_colour = (255, 0, 0) # Red self-driving vehicles
+        self.nsdv_colour = (0, 255, 0) # Green non self-driving vehicles
+        self.speed_variance = 2.5
+        self.self_driving_vehicle_proportion = 0.5 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
         if self.self_driving_vehicle_proportion == 1:
             self.v = self.v * 1.5
 #----------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -98,28 +100,28 @@ class Intersection:
 
             'vehicles': [
                 #South [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [0, 16, 12], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
-                (1, {'path': [1, 17, 13], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
-                (1, {'path': [1, 24, 11], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
-                (1, {'path': [0, 28, 14], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [0, 16, 12], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
+                (1, {'path': [1, 17, 13], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
+                (1, {'path': [1, 24, 11], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
+                (1, {'path': [0, 28, 14], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
 
                 #East [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [2, 18, 14], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
-                (1, {'path': [3, 19, 15], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
-                (1, {'path': [3, 25, 13], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
-                (1, {'path': [2, 29, 8], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [2, 18, 14], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
+                (1, {'path': [3, 19, 15], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
+                (1, {'path': [3, 25, 13], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
+                (1, {'path': [2, 29, 8], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
 
                 #North [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [4, 20, 8], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
-                (1, {'path': [5, 21, 9], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
-                (1, {'path': [5, 26, 15], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
-                (1, {'path': [4, 30, 10], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [4, 20, 8], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
+                (1, {'path': [5, 21, 9], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
+                (1, {'path': [5, 26, 15], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
+                (1, {'path': [4, 30, 10], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
            
                 #West [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [6, 22, 10], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
-                (1, {'path': [7, 23, 11], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
-                (1, {'path': [7, 27, 9], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
-                (1, {'path': [6, 31, 12], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (0, 225, 0, 80)}),
+                (1, {'path': [6, 22, 10], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
+                (1, {'path': [7, 23, 11], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
+                (1, {'path': [7, 27, 9], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
+                (1, {'path': [6, 31, 12], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.nsdv_colour}),
                 ], 'vehicle_rate' : self.vehicle_rate*(1-self.self_driving_vehicle_proportion) 
             })
         
@@ -135,28 +137,28 @@ class Intersection:
             #All self-driving vehicles will have red color
             'vehicles': [
                 #South [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [0, 16, 12], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
-                (1, {'path': [1, 17, 13], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
-                (1, {'path': [1, 24, 11], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
-                (1, {'path': [0, 28, 14], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [0, 16, 12], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
+                (1, {'path': [1, 17, 13], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
+                (1, {'path': [1, 24, 11], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
+                (1, {'path': [0, 28, 14], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
 
                 #East [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [2, 18, 14], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
-                (1, {'path': [3, 19, 15], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
-                (1, {'path': [3, 25, 13], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
-                (1, {'path': [2, 29, 8], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [2, 18, 14], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
+                (1, {'path': [3, 19, 15], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
+                (1, {'path': [3, 25, 13], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
+                (1, {'path': [2, 29, 8], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
 
                 #North [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [4, 20, 8], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
-                (1, {'path': [5, 21, 9], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
-                (1, {'path': [5, 26, 15], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
-                (1, {'path': [4, 30, 10], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [4, 20, 8], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
+                (1, {'path': [5, 21, 9], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
+                (1, {'path': [5, 26, 15], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
+                (1, {'path': [4, 30, 10], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
            
                 #West [Inner Straight, Outer Straight, Right Turn, Left Turn]
-                (1, {'path': [6, 22, 10], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
-                (1, {'path': [7, 23, 11], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
-                (1, {'path': [7, 27, 9], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
-                (1, {'path': [6, 31, 12], 'v_max': self.v ,'T' : 0.1,'s0' : 4, 'colour':(225, 0, 0, 80)}),
+                (1, {'path': [6, 22, 10], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
+                (1, {'path': [7, 23, 11], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
+                (1, {'path': [7, 27, 9], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
+                (1, {'path': [6, 31, 12], 'v_max': self.v , 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
                 ], 'vehicle_rate' : self.vehicle_rate*self.self_driving_vehicle_proportion 
             })
         

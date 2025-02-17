@@ -9,6 +9,7 @@ src/trafficSimulator.egg-info/SOURCES.txt
 src/trafficSimulator.egg-info/dependency_links.txt
 src/trafficSimulator.egg-info/requires.txt
 src/trafficSimulator.egg-info/top_level.txt
+src/trafficSimulator/core/__init__.py
 src/trafficSimulator/core/simulation.py
 src/trafficSimulator/core/vehicle.py
 src/trafficSimulator/core/vehicle_generator.py
@@ -16,4 +17,5 @@ src/trafficSimulator/core/geometry/cubic_curve.py
 src/trafficSimulator/core/geometry/quadratic_curve.py
 src/trafficSimulator/core/geometry/segment.py
 src/trafficSimulator/core/geometry/traffic_signal.py
+src/trafficSimulator/visualizer/__init__.py
 src/trafficSimulator/visualizer/window.py

@@ -18,7 +18,7 @@ class Intersection:
         self.sdv_colour = (255, 0, 0) # Red self-driving vehicles
         self.nsdv_colour = (0, 255, 0) # Green non self-driving vehicles
         self.speed_variance = 2.5
-        self.self_driving_vehicle_proportion = 0.5 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
+        self.self_driving_vehicle_proportion = 1 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
         if self.self_driving_vehicle_proportion == 1:
             self.v = self.v * 1.5
 #----------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -158,7 +158,7 @@ class Intersection:
                 (1, {'path': [6, 22, 10], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
                 (1, {'path': [7, 23, 11], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
                 (1, {'path': [7, 27, 9], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
-                (1, {'path': [6, 31, 12], 'v_max': self.v , 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
+                (1, {'path': [6, 31, 12], 'v_max': self.v, 'T' : 0.1,'s0' : 4, 'colour':self.sdv_colour}),
                 ], 'vehicle_rate' : self.vehicle_rate*self.self_driving_vehicle_proportion 
             })
         

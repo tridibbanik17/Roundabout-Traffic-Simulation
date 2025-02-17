@@ -12,10 +12,11 @@ class TrafficSignal:
         self.init_properties()
 
     def set_default_config(self):
-        self.cycle = [(False, True,60), (False,False,66), (True, False,126), (False, False, 132)]
-        self.slow_distance = 50
+        # Divide the state times by 1.5 because roundabout aims to clear traffic congestion sooner than a regular intersection. No left turn delays.
+        self.cycle = [(False, True,40), (False,False,44), (True, False,84), (False, False, 88)]
+        self.slow_distance = 25
         self.slow_factor = 5
-        self.stop_distance = 20
+        self.stop_distance = 10
 
 
         self.current_cycle_index = 0

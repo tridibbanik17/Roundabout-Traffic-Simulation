@@ -6,12 +6,12 @@ class Intersection:
     def __init__(self):
         self.sim = Simulation()
         lane_space = 3.5
-        intersection_size = 98
+        intersection_size = 49
         island_width = 2
-        length = 50 
-        radius = 36
+        length = 100 
+        radius = 18
 
-        self.vehicle_rate = 30 # Vehicle rate is 5 times lower because the road is only for Emergency vehicle's use
+        self.vehicle_rate = 20/5 # Vehicle rate is 5 times lower because the road is only for Emergency vehicle's use
         self.speed_variance = 2.5
         self.v = 25.50 # Increasing the vehicle speed 1.5 times the default speed (17 m/s)
         self.self_driving_vehicle_proportion = 0.5 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
@@ -87,7 +87,7 @@ class Intersection:
                 (1, {'path': [5, 21, 29, 23, 31, 17, 10],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (255, 255, 0)}),
                 (1, {'path': [7, 23, 31, 17, 10],'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': (255, 255, 0)}),
 
-            ], 'vehicle_rate': self.vehicle_rate/5
+            ], 'vehicle_rate': self.vehicle_rate
         }
         )
 

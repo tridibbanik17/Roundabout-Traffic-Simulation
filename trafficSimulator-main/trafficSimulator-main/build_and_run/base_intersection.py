@@ -13,7 +13,7 @@ class Intersection:
 
 
 #---------------------------------------------------------------Variables----------------------------------------------------------------------------#
-        self.vehicle_rate = 30 # Increasing the vehicle rate 3 times before
+        self.vehicle_rate = 20 # Increasing the vehicle rate 2 times before
         self.v = 17
         self.sdv_colour = (255, 0, 0) # Red self-driving vehicles
         self.nsdv_colour = (0, 255, 0) # Green non self-driving vehicles

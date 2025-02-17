@@ -11,9 +11,9 @@ class Intersection:
         length = 100 
         radius = 18
 
-        self.vehicle_rate = 20 # Increasing the vehicle rate 2 times default
-        self.speed_variance = 2.5
-        self.v = 17 
+        self.vehicle_rate = 20 # vehicle spawn rate 
+        self.speed_variance = 2.5 
+        self.v = 17/1.5
         self.self_driving_vehicle_proportion = 0.5 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
         if self.self_driving_vehicle_proportion == 1:
             self.v = self.v * 1.5 # Self-driving vehicles can have 1.5 times speed than a non self-driving vehicle due to their better reaction time and overall control

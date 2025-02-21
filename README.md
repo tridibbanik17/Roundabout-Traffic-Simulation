@@ -13,6 +13,12 @@ For example, in **10-15 years**, a **super-hospital** will be established close 
 
 This project simulates a traffic system with a roundabout and an underground tunnel to optimize travel time, particularly for patient-carrying vehicles. The simulation is built using SUMO (Simulation of Urban Mobility).
 
+## Traffic Simulation Demonstration
+Below is a demonstration of the simulation:
+
+[![Traffic Simulation Demonstration](https://img.youtube.com/vi/mtedlVwetO4/maxresdefault.jpg)](https://www.youtube.com/watch?v=mtedlVwetO4)
+Click the thumbnail to watch the video on YouTube.
+
 ## Installation
 
 ### Dependencies

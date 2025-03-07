@@ -6,14 +6,14 @@ class Intersection:
     def __init__(self):
         self.sim = Simulation()
         lane_space = 3.5
-        intersection_size = 49
+        intersection_size = 49 # intersection size is doubled bcause roundabouts require more area to implement than a traditional four-way intersection
         island_width = 2
         length = 100 
         radius = 18
 
-        self.vehicle_rate = 20/5 # Vehicle rate is 5 times lower because the road is only for Emergency vehicle's use
+        self.vehicle_rate = 20/5 # Vehicle rate is one-fifth of the default value used in base_intersection.py because the road is only for Emergency vehicle's use
         self.speed_variance = 2.5
-        self.v = 17*1.5 # Increasing the vehicle speed 1.5 times the default speed (17 m/s)
+        self.v = 17*1.5 # The vehicle speed is 1.5 times the default speed (17 m/s)
         self.self_driving_vehicle_proportion = 0.5 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
         if self.self_driving_vehicle_proportion == 1:
             self.v = self.v * 1.5 # Self-driving vehicles can have 1.5 times speed than a non self-driving vehicle due to their better reaction time and overall control

@@ -6,17 +6,29 @@ class Intersection:
     def __init__(self):
         self.sim = Simulation()
         lane_space = 3.5
-        intersection_size = 49
+        intersection_size = 49 # intersection size is doubled bcause roundabouts require more area to implement than a traditional four-way intersection
         island_width = 2
         length = 100 
         radius = 18
 
         self.vehicle_rate = 20 # vehicle spawn rate 
+        self.pedestrian_rate = 40 # Increasing the rate 2 times before
         self.speed_variance = 2.5 
-        self.v = 17/1.5
+        self.v = 17/1.5 # vehicle speed is two-third of the default
+        self.pedestrian_speed = 17/6 # reduce 4 times 
+        self.bike_speed = self.pedestrian_speed * 3
+        self.pedestrian_colour = (0, 0, 255) # Identify pedestrians by blue colour
+        self.bike_colour = (255, 105, 180) # Identify bikes by pink colour
         self.self_driving_vehicle_proportion = 0.5 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
         if self.self_driving_vehicle_proportion == 1:
             self.v = self.v * 1.5 # Self-driving vehicles can have 1.5 times speed than a non self-driving vehicle due to their better reaction time and overall control
+        self.bike_proportion = 0.5 #number between 0 and 1, 0 means no bikes, 1 means entirely bikes
+        self.pedestrian_w = 1.75 / 3 # reduce the width 3 times
+        self.pedestrian_l = 4 / 3 # reduce the length 3 times
+        self.bike_w = 1.75 / 2 # reduce the width 2 times
+        self.bike_l = 4 / 2 # reduce the length 2 times
+        if self.bike_proportion == 1:
+            self.bike_speed = self.bike_speed * 1.5
 
         #entrance 0-7
         self.sim.create_segment((lane_space/2 + island_width/2, length + intersection_size/2), (lane_space/2 + island_width/2, intersection_size/2)) #0
@@ -104,7 +116,27 @@ class Intersection:
         self.sim.create_quadratic_bezier_curve((-intersection_size/2 - length/2+lane_space*3, -lane_space*5/2 - island_width/2),(-intersection_size/2-length/2+lane_space*3, -lane_space*3/2 - island_width/2),(-length/2 - intersection_size/2, -lane_space - island_width/2)) #62
         self.sim.create_segment((-length/2 - intersection_size/2, -lane_space*3/2 - island_width/2), (-intersection_size/2 -length, -lane_space*3/2 - island_width/2)) #63
 
+        # For bike lanes lead to underpass
+        self.sim.create_segment((lane_space*5/2 + island_width/2, length+intersection_size/2), (lane_space*5/2+island_width/2, length/2+intersection_size/2)) #64  
+        self.sim.create_segment((length + intersection_size/2, -lane_space*5/2 - island_width/2), (length/2+3/2*intersection_size/2, - lane_space*5/2 - island_width/2)) #65
+        self.sim.create_segment((-lane_space*5/2 - island_width/2, -length - intersection_size/2), (-lane_space*5/2 - island_width/2, -length/2-intersection_size/2)) #66 
+        self.sim.create_segment((-length - intersection_size/2, lane_space*5/2 + island_width/2), (-length/2-3/2*intersection_size/2, lane_space*5/2 + island_width/2)) #67
 
+        self.sim.create_segment((-lane_space*5/2 - island_width/2, length+intersection_size/2), (-lane_space*5/2 - island_width/2, length*3/5 + intersection_size/2)) #68
+        self.sim.create_segment((length + intersection_size/2, lane_space*5/2 + island_width/2), (length/2+intersection_size/2, lane_space*5/2 + island_width/2)) #69
+        self.sim.create_segment((lane_space*5/2 + island_width/2, -length-intersection_size/2), (lane_space*5/2 + island_width/2, -length*3/5-intersection_size/2)) #70
+        self.sim.create_segment((-length-intersection_size/2, -lane_space*5/2 - island_width/2), (-length/2 - intersection_size/2, -lane_space*5/2 - island_width/2)) #71
+
+        # For pedestrian walks lead to underpass
+        self.sim.create_segment((lane_space*7/2 + island_width/2, length+intersection_size/2), (lane_space*7/2+island_width/2, length/2+intersection_size/2)) #72
+        self.sim.create_segment((length + intersection_size/2, -lane_space*7/2 - island_width/2), (length/2+3/2*intersection_size/2, - lane_space*7/2 - island_width/2)) #73
+        self.sim.create_segment((-lane_space*7/2 - island_width/2, -length - intersection_size/2), (-lane_space*7/2 - island_width/2, -length/2-intersection_size/2)) #74
+        self.sim.create_segment((-length - intersection_size/2, lane_space*7/2 + island_width/2), (-length/2-3/2*intersection_size/2, lane_space*7/2 + island_width/2)) #75
+
+        self.sim.create_segment((-lane_space*7/2 - island_width/2, length+intersection_size/2), (-lane_space*7/2 - island_width/2, length*3/5 + intersection_size/2)) #76
+        self.sim.create_segment((length + intersection_size/2, lane_space*7/2 + island_width/2), (length/2+intersection_size/2, lane_space*7/2 + island_width/2)) #77
+        self.sim.create_segment((lane_space*7/2 + island_width/2, -length-intersection_size/2), (lane_space*7/2 + island_width/2, -length*3/5-intersection_size/2)) #78
+        self.sim.create_segment((-length-intersection_size/2, -lane_space*7/2 - island_width/2), (-length/2 - intersection_size/2, -lane_space*7/2 - island_width/2)) #79
         self.vg = VehicleGenerator({
 
 
@@ -220,10 +252,57 @@ class Intersection:
         }
         )
 
+        #regular pedestrian generator
+        self.pg = PedestrianGenerator({
+            #The first variable: 1 defines the weight if the pedestrian; the higher the weight the more likely that type of pedestrian will generate
+            # 'path' defines the order of segments the pedestrian will drive over
+            #'v_max' defines the fastest speed a pedestrian can drive at
+            #All regular non-self driving pedestrians will have green color
+
+            'pedestrians': [
+                (1, {'path': [72], 'v_max': self.pedestrian_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.pedestrian_colour, 'l': self.pedestrian_l, 'w': self.pedestrian_w}),
+                (1, {'path': [73], 'v_max': self.pedestrian_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.pedestrian_colour, 'l': self.pedestrian_l, 'w': self.pedestrian_w}),
+                (1, {'path': [74], 'v_max': self.pedestrian_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.pedestrian_colour, 'l': self.pedestrian_l, 'w': self.pedestrian_w}),
+                (1, {'path': [75], 'v_max': self.pedestrian_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.pedestrian_colour, 'l': self.pedestrian_l, 'w': self.pedestrian_w}),
+
+                (1, {'path': [76], 'v_max': self.pedestrian_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.pedestrian_colour, 'l': self.pedestrian_l, 'w': self.pedestrian_w}),
+                (1, {'path': [77], 'v_max': self.pedestrian_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.pedestrian_colour, 'l': self.pedestrian_l, 'w': self.pedestrian_w}),
+                (1, {'path': [78], 'v_max': self.pedestrian_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.pedestrian_colour, 'l': self.pedestrian_l, 'w': self.pedestrian_w}),
+                (1, {'path': [79], 'v_max': self.pedestrian_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'colour': self.pedestrian_colour, 'l': self.pedestrian_l, 'w': self.pedestrian_w}),
+
+                ], 'pedestrian_rate' : self.pedestrian_rate*(1-self.bike_proportion) 
+            })
+        
+                #bike generator
+        self.bg = PedestrianGenerator({
+ 
+            #The first variable: 1 defines the weight if the pedestrian; the higher the weight the more likely that type of pedestrian will generate
+            # 'path' defines the order of segments the pedestrian will drive over
+            #'v_max' defines the fastest speed a pedestrian can drive at
+            #'T' defines the reaction time of the pedestrian, the base is 1
+            #'s0' defines the shortest distance a pedestrian is able to drive behind another pedestrian 
+            #All self-driving pedestrians will have red color
+            'pedestrians': [
+                (1, {'path': [71], 'v_max': self.bike_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'T' : 0.75,'s0' : 4, 'colour':self.bike_colour, 'l': self.bike_l, 'w': self.bike_w}),
+                (1, {'path': [70], 'v_max': self.bike_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'T' : 0.75,'s0' : 4, 'colour':self.bike_colour, 'l': self.bike_l, 'w': self.bike_w}),
+                (1, {'path': [69], 'v_max': self.bike_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'T' : 0.75,'s0' : 4, 'colour':self.bike_colour, 'l': self.bike_l, 'w': self.bike_w}),
+                (1, {'path': [68], 'v_max': self.bike_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'T' : 0.75,'s0' : 4, 'colour':self.bike_colour, 'l': self.bike_l, 'w': self.bike_w}),
+
+                (1, {'path': [67], 'v_max': self.bike_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'T' : 0.75,'s0' : 4, 'colour':self.bike_colour, 'l': self.bike_l, 'w': self.bike_w}),
+                (1, {'path': [66], 'v_max': self.bike_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'T' : 0.75,'s0' : 4, 'colour':self.bike_colour, 'l': self.bike_l, 'w': self.bike_w}),
+                (1, {'path': [65], 'v_max': self.bike_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'T' : 0.75,'s0' : 4, 'colour':self.bike_colour, 'l': self.bike_l, 'w': self.bike_w}),
+                (1, {'path': [64], 'v_max': self.bike_speed + 2*self.speed_variance*np.random.random() -self.speed_variance, 'T' : 0.75,'s0' : 4, 'colour':self.bike_colour, 'l': self.bike_l, 'w': self.bike_w}),
+
+                ], 'pedestrian_rate' : self.pedestrian_rate*self.bike_proportion 
+            })
+
+
         #adding three types of vehicle generators
         self.sim.add_vehicle_generator(self.vg) # regular vehicles = green
         self.sim.add_vehicle_generator(self.sdvg) # self-driving vehicles = red
         self.sim.add_vehicle_generator(self.emsvg) # patient carrying vehicles = yellow
+        self.sim.add_pedestrian_generator(self.pg) # pedestrians = blue
+        self.sim.add_pedestrian_generator(self.bg) # bikes = pink
 
         # self.sim.define_interfearing_paths([entry_0,turn_into_corners_0],[connectors_7,corners_0],turn=True)
         # self.sim.define_interfearing_paths([entry_2,turn_into_corners_2],[connectors_0,corners_2],turn=True)
@@ -232,7 +311,7 @@ class Intersection:
         self.sim.define_interfearing_paths([4,36],[26,20],turn=True)
         self.sim.define_interfearing_paths([6,38],[28,22],turn=True)
     
-        #adding the traffic signal
+        # Uncomment to add the traffic signal
         # self.sim.create_traffic_signal([self.sim.segments[0],self.sim.segments[1], self.sim.segments[4], self.sim.segments[5]],[self.sim.segments[2],self.sim.segments[3],self.sim.segments[6], self.sim.segments[7]])
 
     def get_sim(self):

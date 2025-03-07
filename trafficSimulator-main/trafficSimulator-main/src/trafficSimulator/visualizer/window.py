@@ -300,6 +300,29 @@ class Window:
                 translate = dpg.create_translation_matrix(position)
                 rotate = dpg.create_rotation_matrix(heading, [0, 0, 1])
                 dpg.apply_transform(node, translate*rotate)
+
+    def draw_pedestrians(self):
+        
+        for segment in self.simulation.segments:
+            for pedestrian_id in segment.pedestrians:
+                pedestrian = self.simulation.pedestrians[pedestrian_id]
+                progress = pedestrian.x / segment.get_length()
+
+                position = segment.get_point(progress)
+                heading = segment.get_heading(progress)
+
+                node = dpg.add_draw_node(parent="Canvas")
+                dpg.draw_line(
+                    (0, 0),
+                    (pedestrian.l, 0),
+                    thickness= pedestrian.w*self.zoom,
+                    color=pedestrian.colour,
+                    parent=node
+                )
+
+                translate = dpg.create_translation_matrix(position)
+                rotate = dpg.create_rotation_matrix(heading, [0, 0, 1])
+                dpg.apply_transform(node, translate*rotate)
                 
     def draw_signals(self):
         for signal in self.simulation.traffic_signals:
@@ -339,6 +362,7 @@ class Window:
         self.draw_grid(unit=50)
         self.draw_segments()
         self.draw_vehicles()
+        self.draw_pedestrians()
         self.draw_signals()
 
         # Apply transformations

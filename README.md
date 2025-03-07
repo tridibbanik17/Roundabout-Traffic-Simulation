@@ -9,12 +9,20 @@ For example, in **10-15 years**, a **super-hospital** will be established close 
 1. **Upper Layer**: The main intersection that any vehicle can use.
 2. **Lower Layer**: A small underpass directly connected to the hospital basement, used **only for patient-carrying vehicles** going to or from the hospital.
 
+Pedestrians and bikes use the underpasses, and their lanes are separated.
+
 ## Overview
 
 This project simulates a traffic system with a roundabout and an underground tunnel to optimize travel time, particularly for patient-carrying vehicles. The simulation is built using SUMO (Simulation of Urban Mobility).
 
 ## Traffic Simulation Demonstration
-Below some demonstrations of the simulation:
+Below are some demonstrations of the simulation:
+
+Yellow = Patient-carrying vehicles,
+Red = Self-driving vehicles,
+Green = Non-self-driving vehicles,
+Blue = Pedestrians,
+Pink = Bikes.
 
 ![Upper Roundabout with Pedestrians](trafficSimulator-main/trafficSimulator-main/demo_videos/upper_roundabout_with_pedestrians.gif)
 

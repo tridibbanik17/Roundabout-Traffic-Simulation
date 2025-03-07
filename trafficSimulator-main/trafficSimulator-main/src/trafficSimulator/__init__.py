@@ -7,6 +7,9 @@ from .core.geometry.traffic_signal import TrafficSignal
 from .core.vehicle import Vehicle
 from .core.vehicle_generator import VehicleGenerator
 
+from .core.pedestrian import Pedestrian
+from .core.pedestrian_generator import PedestrianGenerator
+
 from .core.simulation import Simulation
 from .visualizer.window import Window
 

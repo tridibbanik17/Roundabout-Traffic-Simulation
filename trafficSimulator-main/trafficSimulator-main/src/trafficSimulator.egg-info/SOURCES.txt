@@ -12,7 +12,9 @@ src/trafficSimulator.egg-info/top_level.txt
 src/trafficSimulator/core/__init__.py
 src/trafficSimulator/core/simulation.py
 src/trafficSimulator/core/vehicle.py
+src/trafficSimulator/core/pedestrian.py
 src/trafficSimulator/core/vehicle_generator.py
+src/trafficSimulator/core/pedestrian_generator.py
 src/trafficSimulator/core/geometry/cubic_curve.py
 src/trafficSimulator/core/geometry/quadratic_curve.py
 src/trafficSimulator/core/geometry/segment.py

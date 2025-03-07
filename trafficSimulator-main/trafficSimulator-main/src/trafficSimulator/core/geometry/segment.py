@@ -12,6 +12,7 @@ class Segment(ABC):
     def __init__(self, points, config={}):
         self.points = points
         self.vehicles = deque()
+        self.pedestrians = deque()
         self.width = 3.5
         self.has_traffic_signal = False
 
@@ -49,10 +50,17 @@ class Segment(ABC):
 
         self.vehicles.append(veh.id)
 
+    def add_pedestrian(self, ped):
+
+        self.pedestrians.append(ped.id)
 
     def remove_vehicle(self, veh):
 
         self.vehicles.remove(veh.id)
+
+    def remove_pedestrian(self, ped):
+
+        self.pedestrians.remove(ped.id)
 
     @abstractmethod
     def compute_x(self, t):

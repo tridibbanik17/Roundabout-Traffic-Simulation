@@ -31,7 +31,7 @@ Pink = Bikes.
 ![Lower Roundabout for patient-carrying patients](trafficSimulator-main/trafficSimulator-main/demo_videos/lower_roundabout_simulation.gif)
 
 Below is a video demonstration of the old version that didn't have predestrians and bikes.
-[![Traffic Simulation Demonstration](https://img.youtube.com/vi/mtedlVwetO4/maxresdefault.jpg)](https://www.youtube.com/watch?v=mtedlVwetO4)
+[![Traffic Simulation Demonstration](https://img.youtube.com/vi/mtedlVwetO4/maxresdefault.jpg)](https://www.youtube.com/embed/mtedlVwetO4)
 Click the thumbnail to watch the video on YouTube.
 
 ## Installation
